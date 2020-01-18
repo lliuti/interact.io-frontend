@@ -38,7 +38,19 @@ export const TextContainer = styled.div`
   padding: 0 50px;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  margin: 15px 0;
+`;
+
+export const ErrorBox = styled.div`
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f05151;
+`;
+
+export const Error = styled.h1``;
 
 export const TitleItem = styled.h1`
   color: #FFEB7D;

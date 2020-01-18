@@ -3,6 +3,9 @@ import styled from 'styled-components';
 const mainPurple = '#B371FF';
 
 export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
   width: 100%;
   height: calc(100vh - 70px);
   padding: 50px 100px;
@@ -12,9 +15,27 @@ export const FeedContainer = styled.div`
   width: 100%;
 `;
 
-export const LeftContainer = styled.div``;
+export const LeftContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+`;
 
-export const RightContainer = styled.div``;
+export const RightContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+`;
 
 export const InteractBox = styled.div`
   display: flex;
@@ -22,6 +43,10 @@ export const InteractBox = styled.div`
   align-items: center;
   flex: 1;
   flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 `;
 
 export const PostTitle = styled.input`

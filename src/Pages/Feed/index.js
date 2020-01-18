@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import Posts from '../../Components/Post/index';
 import Api from '../../services/api';
 import Header from '../../Components/Header/index';
+
 import { 
   Container, 
   FeedContainer,
@@ -16,14 +18,26 @@ import {
 export default function Feed() {
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+
+    async function loadPosts() {
+      const response = await Api.get('/posts', {});
+      const posts = response.data;
+      setPosts(posts);
+    };
+    loadPosts();
+  }, []);
 
   async function createPost() {
-
     const response = await Api.post('/posts', { 
       title, 
       content,
     });
-    console.log(response);
+
+    setTitle('');
+    setContent('');
   };
 
   return (
@@ -31,17 +45,22 @@ export default function Feed() {
     <Header/>
     <Container>
       <LeftContainer>
-
+        Nothing here
       </LeftContainer>
+      
       <FeedContainer>
         <InteractBox>
-          <PostTitle onChange={(event) => setTitle(event.target.value)} placeholder='What you want to talk about?'/>
-          <PostContent onChange={(event) => setContent(event.target.value)} placeholder='Tell us more...'/>
+          <PostTitle value={title} onChange={(event) => setTitle(event.target.value)} placeholder='What you want to talk about?'/>
+          <PostContent value={content} onChange={(event) => setContent(event.target.value)} placeholder='Tell us more...'/>
           <InteractButtton onClick={createPost}>Interact!</InteractButtton>
         </InteractBox>
+        {posts.map(post => (
+          <Posts key={post.id} post={post}/>
+        ))}
       </FeedContainer>
-      <RightContainer>
 
+      <RightContainer>
+        Nothing there
       </RightContainer>
     </Container>
     </>
