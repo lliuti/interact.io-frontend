@@ -31,13 +31,20 @@ export default function Feed() {
   }, []);
 
   async function createPost() {
-    const response = await Api.post('/posts', { 
+    await Api.post('/posts', { 
       title, 
       content,
     });
 
+    const newPost = {
+      id: 'mocked_id',
+      title,
+      content
+    }
+
     setTitle('');
     setContent('');
+    setPosts([...posts, newPost]);
   };
 
   return (

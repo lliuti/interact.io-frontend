@@ -37,7 +37,7 @@ export default function SignIn() {
       if (loginType === 0) {
         response = await Api.post('/auth', { 
           email: '', 
-          nickname: nick, 
+          nick, 
           password 
         });
       } else {
@@ -47,7 +47,7 @@ export default function SignIn() {
           password 
         });
       }; 
-
+  
       const { id } = response.data.user;
       const { token } = response.data;
       
@@ -55,23 +55,22 @@ export default function SignIn() {
         id,
         token
       };
-
+  
       sessionStorage.setItem('user', JSON.stringify(user));
-
+  
       setError(null);
-
+  
       setToFeed(1);
     } catch (err) {
       const { error } = err.response.data;
       console.log(error);
       setError(error);
-      setToFeed(null);
     }
   };
 
   return (
     <>
-      {toFeed ? <Redirect to="/feed"/> : null}
+      {toFeed === 1 ? <Redirect to="/feed"/> : null}
       <Container>
         <FormContainer>
           <Title>Sign into your account</Title>
