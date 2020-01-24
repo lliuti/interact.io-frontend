@@ -49,7 +49,7 @@ export const InteractBox = styled.div`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 `;
 
-export const PostTitle = styled.input`
+export const PostTitleInput = styled.input`
   margin-bottom: 2.5px;
   border: 1px solid #333;
   border-radius: 20px;
@@ -65,7 +65,7 @@ export const PostTitle = styled.input`
   }
 `;
 
-export const PostContent = styled.input`
+export const PostContentInput = styled.input`
   margin-bottom: 5px;
   border: 1px solid #333;
   border-radius: 20px;
@@ -94,3 +94,36 @@ export const InteractButtton = styled.button`
     box-shadow: 0px 6px 20px #B371FF;
   };
 `;
+
+export const PostContainer = styled.div`
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  margin: 15px 0;
+  padding: 5px 25px;
+`;
+
+export const PostTitleBox = styled.div`
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #e3e3e3;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PostContentBox = styled.div`
+  margin-top: 10px;
+`;
+
+export const PostTitle = styled.h1`
+  font-size: 20px;
+`;
+
+export const PostDeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #f15959;
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const PostContent = styled.p``;

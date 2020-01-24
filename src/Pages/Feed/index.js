@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Posts from '../../Components/Post/index';
-import Api from '../../services/api';
+import api from '../../services/api';
 import Header from '../../Components/Header/index';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { 
   Container, 
@@ -10,28 +12,41 @@ import {
   LeftContainer,
   RightContainer,
   InteractBox,
-  PostTitle,
-  PostContent,
+  PostTitleInput,
+  PostContentInput,
   InteractButtton,
+  //
+  PostContainer,
+  PostTitleBox,
+  PostContentBox,
+  PostTitle,
+  PostDeleteButton,
+  PostContent
 } from './styles';
 
 export default function Feed() {
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [userId, setUserId] = useState(0);
 
   useEffect(() => {
 
-    async function loadPosts() {
-      const response = await Api.get('/posts', {});
-      const posts = response.data;
-      setPosts(posts);
-    };
+    const data = JSON.parse(sessionStorage.getItem('user'));
+    setUserId(data.id);
+
+    
     loadPosts();
   }, []);
 
+  async function loadPosts() {
+    const response = await api.get('/posts', {});
+    const posts = response.data;
+    setPosts(posts);
+  };
+
   async function createPost() {
-    await Api.post('/posts', { 
+    await api.post('/posts', { 
       title, 
       content,
     });
@@ -39,14 +54,20 @@ export default function Feed() {
     const newPost = {
       id: 'mocked_id',
       title,
-      content
-    }
+      content,
+      user_id: userId,
+    };
 
     setTitle('');
     setContent('');
     setPosts([...posts, newPost]);
   };
 
+  async function deletePost(postId) {
+    await api.delete(`/posts/${postId}`);
+    loadPosts();
+  };
+  
   return (
     <>
     <Header/>
@@ -57,12 +78,24 @@ export default function Feed() {
       
       <FeedContainer>
         <InteractBox>
-          <PostTitle value={title} onChange={(event) => setTitle(event.target.value)} placeholder='What you want to talk about?'/>
-          <PostContent value={content} onChange={(event) => setContent(event.target.value)} placeholder='Tell us more...'/>
+          <PostTitleInput value={title} onChange={(event) => setTitle(event.target.value)} placeholder='What you want to talk about?'/>
+          <PostContentInput value={content} onChange={(event) => setContent(event.target.value)} placeholder='Tell us more...'/>
           <InteractButtton onClick={createPost}>Interact!</InteractButtton>
         </InteractBox>
         {posts.map(post => (
-          <Posts key={post.id} post={post}/>
+          // <Posts key={post.id} post={post}/>
+          <PostContainer key={post.id}>
+            <PostTitleBox>
+              <PostTitle>{post.title}</PostTitle>
+              {post.user_id === userId ? 
+              <PostDeleteButton onClick={() => deletePost(post.id)}>
+                <FontAwesomeIcon icon={faTrash}/>
+              </PostDeleteButton> : null}
+            </PostTitleBox>
+            <PostContentBox>
+              <PostContent>{post.content}</PostContent>
+            </PostContentBox>
+          </PostContainer>
         ))}
       </FeedContainer>
 

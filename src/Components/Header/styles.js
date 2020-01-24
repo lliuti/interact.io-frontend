@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  flex 1;
-`;
-
 export const HeaderContainer = styled.header`
   background-color: #fff;
   width: 100%;
@@ -37,7 +29,11 @@ export const Icon = styled.div`
 
 export const SearchBar = styled.div``;
 
-export const LogoContainer = styled.div``;
+export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Input = styled.input`
   font-size: 18px;
@@ -46,7 +42,9 @@ export const Input = styled.input`
   padding: 8px 20px;
 `;
 
-export const LogoTitle = styled.h1``;
+export const LogoTitle = styled.h1`
+  margin-right: 10px;
+`;
 
 export const GrayText = styled.span`
   color: #bbb;

@@ -37,7 +37,7 @@ export default function SignIn() {
       if (loginType === 0) {
         response = await Api.post('/auth', { 
           email: '', 
-          nick, 
+          nickname: nick, 
           password 
         });
       } else {
@@ -63,7 +63,6 @@ export default function SignIn() {
       setToFeed(1);
     } catch (err) {
       const { error } = err.response.data;
-      console.log(error);
       setError(error);
     }
   };
