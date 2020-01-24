@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <>
-      {toSignUp == 1 ? <Redirect to='/'/> : null}
+      {toSignUp === 1 ? <Redirect to='/'/> : null}
       <HeaderContainer>
         <InteractionButtons>
           <Icon>

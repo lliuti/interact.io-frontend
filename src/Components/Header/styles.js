@@ -4,16 +4,15 @@ export const HeaderContainer = styled.header`
   background-color: #fff;
   width: 100%;
   height: 70px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 export const InteractionButtons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Icon = styled.div`
@@ -27,7 +26,11 @@ export const Icon = styled.div`
   }''
 `;
 
-export const SearchBar = styled.div``;
+export const SearchBar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const LogoContainer = styled.div`
   display: flex;
