@@ -96,11 +96,22 @@ export const InteractButtton = styled.button`
 `;
 
 export const PostContainer = styled.div`
+  column-gap: 5px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   margin: 15px 0;
-  padding: 5px 25px;
+  padding: 5px 25px;  
+`;
+
+export const InnerPostContainer = styled.div`
+`;
+
+export const PostAuthor = styled.h1`
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  color: #999;
 `;
 
 export const PostTitleBox = styled.div`
@@ -118,12 +129,24 @@ export const PostTitle = styled.h1`
   font-size: 20px;
 `;
 
-export const PostDeleteButton = styled.button`
+export const ManagmentButtons = styled.div``;
+
+export const DeletePostButton = styled.button`
   background-color: transparent;
   border: none;
   color: #f15959;
   font-size: 18px;
   cursor: pointer;
+  margin: 0 5px;
+`;
+
+export const EditPostButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #3A4EBD;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 5px;
 `;
 
 export const PostContent = styled.p``;

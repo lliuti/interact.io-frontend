@@ -4,7 +4,7 @@ import api from '../../services/api';
 import Header from '../../Components/Header/index';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { 
   Container, 
@@ -17,10 +17,14 @@ import {
   InteractButtton,
   //
   PostContainer,
+  InnerPostContainer,
+  PostAuthor,
   PostTitleBox,
   PostContentBox,
   PostTitle,
-  PostDeleteButton,
+  ManagmentButtons,
+  EditPostButton,
+  DeletePostButton,
   PostContent
 } from './styles';
 
@@ -55,7 +59,6 @@ export default function Feed() {
       id: 'mocked_id',
       title,
       content,
-      user_id: userId,
     };
 
     setTitle('');
@@ -83,18 +86,28 @@ export default function Feed() {
           <InteractButtton onClick={createPost}>Interact!</InteractButtton>
         </InteractBox>
         {posts.map(post => (
-          // <Posts key={post.id} post={post}/>
           <PostContainer key={post.id}>
-            <PostTitleBox>
-              <PostTitle>{post.title}</PostTitle>
-              {post.user_id === userId ? 
-              <PostDeleteButton onClick={() => deletePost(post.id)}>
-                <FontAwesomeIcon icon={faTrash}/>
-              </PostDeleteButton> : null}
-            </PostTitleBox>
-            <PostContentBox>
-              <PostContent>{post.content}</PostContent>
-            </PostContentBox>
+            <PostAuthor>
+              {post.author.nickname}
+            </PostAuthor>
+            <InnerPostContainer key={post.id}>
+              <PostTitleBox>
+                <PostTitle>{post.title}</PostTitle>
+                {post.author.id === userId ? 
+                <ManagmentButtons>
+                  <EditPostButton>
+                    <FontAwesomeIcon icon={faPen}/>
+                  </EditPostButton>
+                  <DeletePostButton onClick={() => deletePost(post.id)}>
+                    <FontAwesomeIcon icon={faTrash}/>
+                  </DeletePostButton> 
+                </ManagmentButtons>
+                : null}
+              </PostTitleBox>
+              <PostContentBox>
+                <PostContent>{post.content}</PostContent>
+              </PostContentBox>
+            </InnerPostContainer>
           </PostContainer>
         ))}
       </FeedContainer>
