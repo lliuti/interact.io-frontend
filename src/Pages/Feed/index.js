@@ -55,15 +55,9 @@ export default function Feed() {
       content,
     });
 
-    const newPost = {
-      id: 'mocked_id',
-      title,
-      content,
-    };
-
     setTitle('');
     setContent('');
-    setPosts([...posts, newPost]);
+    loadPosts();
   };
 
   async function deletePost(postId) {
