@@ -150,3 +150,6 @@ export const EditPostButton = styled.button`
 `;
 
 export const PostContent = styled.p``;
+
+export const EditingPostContainer = styled.div``;
+export const PostAutorEditInput = styled.input``;

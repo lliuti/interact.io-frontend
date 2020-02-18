@@ -25,7 +25,10 @@ import {
   ManagmentButtons,
   EditPostButton,
   DeletePostButton,
-  PostContent
+  PostContent,
+  //
+  EditingPostContainer,
+  PostAutorEditInput,
 } from './styles';
 
 export default function Feed() {
@@ -33,6 +36,7 @@ export default function Feed() {
   const [content, setContent] = useState([]);
   const [posts, setPosts] = useState([]);
   const [userId, setUserId] = useState(0);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
 
@@ -80,6 +84,7 @@ export default function Feed() {
           <InteractButtton onClick={createPost}>Interact!</InteractButtton>
         </InteractBox>
         {posts.map(post => (
+          editing == false ? 
           <PostContainer key={post.id}>
             <PostAuthor>
               {post.author.nickname}
@@ -102,7 +107,14 @@ export default function Feed() {
                 <PostContent>{post.content}</PostContent>
               </PostContentBox>
             </InnerPostContainer>
-          </PostContainer>
+          </PostContainer>:
+          <EditingPostContainer>
+            <PostAutorEditInput>
+              <InnerPostContainer>
+                
+              </InnerPostContainer>
+            </PostAutorEditInput>
+          </EditingPostContainer>
         ))}
       </FeedContainer>
 
